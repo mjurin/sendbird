@@ -50,6 +50,16 @@ module Sendbird
       self.class.new(json)
     end
 
+    def delete
+      params = {
+        channel_url: channel_url
+      }
+
+      json = client.post("#{path}/delete", params)
+
+      true
+    end
+
     private
 
       def path

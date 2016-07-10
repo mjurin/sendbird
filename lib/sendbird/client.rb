@@ -13,7 +13,7 @@ module Sendbird
 
       json = JSON.parse response.body
 
-      raise Error, "Error: #{json["message"]}" if json["error"]
+      raise Error, "Error: #{json["message"]}" if !json.is_a?(Array) && json["error"]
 
       json
     end

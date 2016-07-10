@@ -12,6 +12,14 @@ module Sendbird
       self.class.new(json)
     end
 
+    def list_messaging_channels
+      params = {
+        id: id
+      }
+
+      client.post("admin/list_messaging_channels", params)
+    end
+
     private
 
       def path
