@@ -25,12 +25,12 @@ module Sendbird
       params = {
         profile_url: profile_url
       }
-      client.put("v3/#{path}/#{id}", params)
+      client.post("#{path}/#{id}", params)
     end
 
     def get
       params = {}
-      client.get("v3/#{path}/#{id}", params)
+      client.get("#{path}/#{id}", params)
     end
 
     private
