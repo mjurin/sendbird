@@ -5,7 +5,7 @@ module Sendbird
     attribute :user_id, String
     attribute :nickname, String
     attribute :access_token, String
-    attribute :profile_url, String
+    attribute :image_url, String
 
     def create
       json = client.post("#{path}/create", params)
@@ -41,7 +41,7 @@ module Sendbird
         {
           id: id,
           nickname: nickname,
-          profile_url: profile_url
+          image_url: image_url
         }
       end
 
