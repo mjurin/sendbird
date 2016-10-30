@@ -22,15 +22,9 @@ module Sendbird
     end
 
     def update
-      params = {
-        profile_url: profile_url
-      }
-      client.post("#{path}/#{id}", params)
-    end
+      json = client.post("#{path}/update", params)
 
-    def get
-      params = {}
-      client.get("#{path}/#{id}", params)
+      self.class.new(json)
     end
 
     private
