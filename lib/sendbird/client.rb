@@ -18,6 +18,41 @@ module Sendbird
       json
     end
 
+    def put(url, params = {})
+      params[:auth] = api_key
+
+      response = faraday_client.put do |req|
+        req.url api_url(url)
+        req.headers['Content-Type'] = 'application/json'
+
+        req.body = JSON.generate(params)
+      end
+
+      json = JSON.parse response.body
+
+      raise Error, "Error: #{json["message"]}" if !json.is_a?(Array) && json["error"]
+
+      json
+    end
+
+    def get(url, params = {})
+      params[:auth] = api_key
+
+      response = faraday_client.get do |req|
+        req.url api_url(url)
+        req.headers['Content-Type'] = 'application/json'
+
+        req.body = JSON.generate(params)
+      end
+
+      json = JSON.parse response.body
+
+      raise Error, "Error: #{json["message"]}" if !json.is_a?(Array) && json["error"]
+
+      json
+    end
+
+
     private
 
       def faraday_client
