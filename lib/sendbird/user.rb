@@ -5,6 +5,7 @@ module Sendbird
     attribute :user_id, String
     attribute :nickname, String
     attribute :access_token, String
+    attribute :profile_url, String
 
     def create
       json = client.post("#{path}/create", params)
@@ -20,6 +21,18 @@ module Sendbird
       client.post("admin/list_messaging_channels", params)
     end
 
+    def update
+      params = {
+        profile_url: profile_url
+      }
+      client.put("#{path}/#{id}", params)
+    end
+
+    def get
+      params = {}
+      client.get("#{path}/#{id}", params)
+    end
+
     private
 
       def path
@@ -33,7 +46,8 @@ module Sendbird
       def params
         {
           id: id,
-          nickname: nickname
+          nickname: nickname,
+          profile_url: profile_url
         }
       end
 
